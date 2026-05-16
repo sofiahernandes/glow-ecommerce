@@ -1,19 +1,19 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, ShoppingBag, X } from "lucide-react"
+import { useState } from 'react'
+import Link from 'next/link'
+import { Menu, ShoppingBag, X } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Badge } from "@/components/ui/badge"
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { Badge } from '@/components/ui/badge'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="md:container flex h-16 items-center justify-between px-2">
         <div className="flex items-center gap-2 md:gap-4">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -24,39 +24,46 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
               <div className="flex items-center justify-between border-b pb-4">
-                <Link href="/" className="font-bold text-xl" onClick={() => setIsOpen(false)}>
+                <Link
+                  href="/"
+                  className="font-bold text-xl"
+                  onClick={() => setIsOpen(false)}
+                >
                   Glow
                 </Link>
-                <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
-          
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsOpen(false)}
+                >
                   <span className="sr-only">Close Toggle menu</span>
                 </Button>
               </div>
               <nav className="flex flex-col gap-4 py-8">
                 <Link
                   href="/"
-                  className="text-lg font-medium transition-colors hover:text-blue-600"
+                  className="text-base font-medium transition-colors hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/products"
-                  className="text-lg font-medium transition-colors hover:text-blue-600"
+                  className="text-base font-medium transition-colors hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   Products
                 </Link>
                 <Link
                   href="/about"
-                  className="text-lg font-medium transition-colors hover:text-blue-600"
+                  className="text-base font-medium transition-colors hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   About us
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-lg font-medium transition-colors hover:text-blue-600"
+                  className="text-base font-medium transition-colors hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   Contact us
@@ -69,16 +76,28 @@ export default function Navbar() {
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/" className="text-sm font-medium transition-colors hover:text-blue-600">
+          <Link
+            href="/"
+            className="text-sm font-medium transition-colors hover:text-blue-600"
+          >
             Home
           </Link>
-          <Link href="/products" className="text-sm font-medium transition-colors hover:text-blue-600">
+          <Link
+            href="/products"
+            className="text-sm font-medium transition-colors hover:text-blue-600"
+          >
             Products
           </Link>
-          <Link href="/about" className="text-sm font-medium transition-colors hover:text-blue-600">
+          <Link
+            href="/about"
+            className="text-sm font-medium transition-colors hover:text-blue-600"
+          >
             About Glow
           </Link>
-          <Link href="/contact" className="text-sm font-medium transition-colors hover:text-blue-600">
+          <Link
+            href="/contact"
+            className="text-sm font-medium transition-colors hover:text-blue-600"
+          >
             Contact us
           </Link>
         </nav>
@@ -86,4 +105,3 @@ export default function Navbar() {
     </header>
   )
 }
-

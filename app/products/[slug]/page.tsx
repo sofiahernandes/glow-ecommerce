@@ -1,20 +1,20 @@
-import Image from "next/image"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { ArrowLeft, Check, ShoppingBag } from "lucide-react"
+import Image from 'next/image'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+import { ArrowLeft, Check, ShoppingBag } from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
+import { Card, CardContent } from '@/components/ui/card'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from '@/components/ui/carousel'
 
-import { products } from "@/lib/products"
+import { products } from '@/lib/products'
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = products.find((p) => p.slug === params.slug)
@@ -36,24 +36,30 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               Back to Products
             </Link>
 
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 lg:mx-20 md:mx-10 items-start">
-                <div className="relative overflow-hidden rounded-xl">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-start">
+              <div className="relative overflow-hidden rounded-xl">
                 <Carousel>
                   <CarouselContent>
                     {product?.images.map((item, index) => (
-                      <CarouselItem key={index} className="flex gap-4 p-0 items-center justify-center">
-                            <Card className="h-full">
-                              <CardContent className="p-0 h-full">
-                                <Image src={item} alt={product.name} className="object-contain h-full"/>
-                              </CardContent>
-                            </Card>
+                      <CarouselItem key={index} className="flex p-0">
+                        <Card className="h-full w-full border-0 shadow-none">
+                          <CardContent className="relative aspect-square p-0">
+                            <Image
+                              src={item}
+                              alt={product.name}
+                              fill
+                              sizes="(min-width: 1024px) 50vw, 100vw"
+                              className="object-contain"
+                            />
+                          </CardContent>
+                        </Card>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="relative left-1 mx-2 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
-                  <CarouselNext className="relative right-1 mx-2 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
+                  <CarouselPrevious className="left-2 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
+                  <CarouselNext className="right-2 translate-x-0 hover:translate-x-0 hover:bg-primary/90" />
                 </Carousel>
-                </div>
+              </div>
               <div className="space-y-6">
                 <div>
                   <div className="flex flex-wrap gap-2 mb-3">
@@ -66,19 +72,32 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                       </div>
                     ))}
                   </div>
-                  <h1 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">{product.name}</h1>
+                  <h1 className="text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
+                    {product.name}
+                  </h1>
                   <div className="flex flex-row gap-4 my-4">
-                    <Button asChild className="bg-blue-600 hover:bg-blue-700 w-60">
-                      <a href={product.url} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      asChild
+                      className="bg-blue-600 hover:bg-blue-700 w-60"
+                    >
+                      <a
+                        href={product.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <ShoppingBag className="mr-2 h-5 w-5" />
                         Grab it Today
                       </a>
                     </Button>
-                    <p className="self-start text-xl font-bold text-blue-600 mt-1">R${product.price}</p>
+                    <p className="self-start text-xl text-blue-600 mt-1">
+                      R${product.price}
+                    </p>
                   </div>
                 </div>
 
-                <p className="text-gray-500 md:text-lg text-justify">{product.description}</p>
+                <p className="text-gray-500 text-justify">
+                  {product.description}
+                </p>
 
                 {product.quote && (
                   <div className="bg-blue-50 p-4 rounded-lg italic text-gray-600 border-l-4 border-blue-500">
@@ -89,7 +108,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Separator />
 
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">What&apos;s Included:</h3>
+                  <h3 className="font-semibold">What&apos;s Included:</h3>
                   <ul className="space-y-2">
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex items-start">
@@ -103,10 +122,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Separator />
 
                 <div className="space-y-4">
-                  <h3 className="text-lg font-semibold">Format:</h3>
+                  <h3 className="text-base font-semibold">Format:</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.formats.map((format, index) => (
-                      <div key={index} className="inline-flex items-center rounded-md border px-3 py-1 text-sm">
+                      <div
+                        key={index}
+                        className="inline-flex items-center rounded-md border px-3 py-1 text-sm"
+                      >
                         {format}
                       </div>
                     ))}
@@ -122,17 +144,25 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">You May Also Like</h2>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">Explore to glow even more.</p>
+                <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+                  You May Also Like
+                </h2>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
+                  Explore to glow even more.
+                </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 mt-8">
               {relatedProducts(product.id).map((relatedProduct) => (
-                <Link key={relatedProduct.id} href={`/products/${relatedProduct.slug}`} className="group">
+                <Link
+                  key={relatedProduct.id}
+                  href={`/products/${relatedProduct.slug}`}
+                  className="group"
+                >
                   <div className="overflow-hidden rounded-xl">
                     <div className="aspect-video relative">
                       <Image
-                        src={relatedProduct.mainImage || "/placeholder.svg"}
+                        src={relatedProduct.mainImage || '/placeholder.svg'}
                         alt={relatedProduct.name}
                         fill
                         priority={true}
@@ -142,8 +172,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     </div>
                     <div className="p-4 bg-white">
                       <h3 className="font-semibold">{relatedProduct.name}</h3>
-                      <p className="text-sm text-gray-500 mt-1">{relatedProduct.category[0]}</p>
-                      <p className="font-bold text-blue-600 mt-2">${relatedProduct.price}</p>
+                      <p className="text-sm text-gray-500 mt-1">
+                        {relatedProduct.category[0]}
+                      </p>
+                      <p className="text-blue-600 mt-2">
+                        ${relatedProduct.price}
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -163,4 +197,3 @@ function relatedProducts(currentProductId: number) {
     .sort(() => 0.5 - Math.random())
     .slice(0, 3)
 }
-

@@ -1,18 +1,17 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import { Analytics } from "@vercel/analytics/react"
-import "./globals.css"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
+import type React from 'react'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
+import './globals.css'
+import Navbar from '@/components/navbar'
+import Footer from '@/components/footer'
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Glow | Digital Products for Mindful Living",
+  title: 'Glow | Digital Products for Mindful Living',
   description:
-    "Digital tools designed to help you organize your life, boost your productivity, and nurture your well-being.",
-    generator: 'v0.dev'
+    'Digital tools designed to help you organize your life, boost your productivity, and nurture your well-being.',
 }
 
 export default function RootLayout({
@@ -35,7 +34,5 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
 import './globals.css'
